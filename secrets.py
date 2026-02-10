@@ -1,4 +1,4 @@
 
 sender = "4mh23cs160@gmail.com"
-receiver = "4mh23cs158@gmail.com.com"
-password = "segd flyy wiep jjat"
+receiver = "4mh23cs158@gmail.com"
+password = "segdflyywiepjjat"

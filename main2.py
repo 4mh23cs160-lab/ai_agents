@@ -1,18 +1,16 @@
 from dotenv import load_dotenv
 load_dotenv()
-
+from email_sender import send_email
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.agents import create_agent
-
-def isprime(number: int) -> bool:
+def isprime(num: int) -> bool:
     """Check if a number is prime."""
-    if number < 2:
+    if num < 2:
         return False
-    for i in range(2, int(number**0.5) + 1):
-        if number % i == 0:
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
             return False
     return True
-
 def get_weather(city: str) -> str:
     """Get weather for a given city."""
     return f"It's always sunny in {city}!"
@@ -24,13 +22,13 @@ model = ChatGoogleGenerativeAI(
 
 agent = create_agent(
     model=model,
-    tools=[get_weather,isprime],
+    tools=[get_weather,isprime,send_email],
     system_prompt="You are a helpful assistant",
 )
 
 # Run the agent
 response = agent.invoke(
-    {"messages": [{"role": "user", "content": "what is the weather in mysore and is 2001 a prime number?"}]}
+    {"messages": [{"role": "user", "content": "what is the weather in mysore and is 2001 a prime number,send an email to 4mh23cs158@gmail.com with the content about the weather and result of primality test"}]}
 )
 
 # Print only the final AI response
